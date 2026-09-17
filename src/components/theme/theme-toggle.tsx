@@ -14,7 +14,7 @@ export function ThemeToggle() {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={isDark}
       suppressHydrationWarning
-      className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent cursor-pointer"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none cursor-pointer"
     >
       <Sun
         aria-hidden

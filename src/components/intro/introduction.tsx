@@ -1,9 +1,11 @@
 import { Container } from "@/components/ui/container";
 import { RevealText } from "@/components/ui/reveal-text";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 
 export function Introduction() {
   return (
-    <section id="intro" className="py-32 sm:py-40">
+    <section id="intro" className="relative py-32 sm:py-40">
+      <AmbientLayer seed="intro" variant="sparse" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_2.5fr]">
           <RevealText className="font-mono text-sm tracking-widest text-muted uppercase">

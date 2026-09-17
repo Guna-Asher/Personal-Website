@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RevealText } from "@/components/ui/reveal-text";
 import { CornerMarks } from "@/components/ui/corner-marks";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { InfraStepTracker } from "./infra-step-tracker";
 import { projects } from "@/lib/data/projects";
 
@@ -10,7 +11,8 @@ export function CurrentlyBuilding() {
   if (!building) return null;
 
   return (
-    <section id="building" className="py-32 sm:py-40">
+    <section id="building" className="relative py-32 sm:py-40">
+      <AmbientLayer seed="building" variant="default" xRange={[45, 105]} />
       <Container>
         <SectionHeading index="02" eyebrow="In progress" title="Currently Building" />
 

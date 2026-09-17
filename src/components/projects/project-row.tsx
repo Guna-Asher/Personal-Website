@@ -1,10 +1,11 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useState, type MouseEvent } from "react";
 import { RevealText } from "@/components/ui/reveal-text";
 import { CornerMarks } from "@/components/ui/corner-marks";
+import { InteractiveLink } from "@/components/ui/interactive-link";
 import type { Project } from "@/lib/data/projects";
 
 export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: number }) {
@@ -45,7 +46,7 @@ export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: n
           </div>
 
           <Plus
-            className={`hidden h-5 w-5 shrink-0 text-muted transition-transform duration-300 group-hover:text-accent sm:block ${
+            className={`hidden h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:scale-110 group-hover:text-accent sm:block ${
               open ? "rotate-45" : "rotate-0"
             }`}
             aria-hidden
@@ -65,21 +66,11 @@ export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: n
                 <span aria-hidden />
                 <div className="max-w-lg">
                   <p className="text-muted">{project.description}</p>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={handleGithubClick}
-                    className="group/link mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-widest text-foreground uppercase focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
-                  >
-                    <span className="border-b border-foreground pb-0.5 transition-colors group-hover/link:border-accent group-hover/link:text-accent">
+                  <div className="mt-5">
+                    <InteractiveLink href={project.github} external onClick={handleGithubClick}>
                       View source on GitHub
-                    </span>
-                    <ArrowUpRight
-                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-accent"
-                      aria-hidden
-                    />
-                  </a>
+                    </InteractiveLink>
+                  </div>
                 </div>
               </div>
             </motion.div>

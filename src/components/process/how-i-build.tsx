@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { processSteps } from "@/lib/data/process";
 
 export function HowIBuild() {
@@ -11,12 +12,25 @@ export function HowIBuild() {
   const activeStep = processSteps[active];
 
   return (
-    <section id="process" className="py-32 sm:py-40">
+    <section id="process" className="relative py-32 sm:py-40">
+      <AmbientLayer seed="process" variant="sparse" />
       <Container>
         <SectionHeading index="04" eyebrow="Methodology" title="How I Build" />
 
         <div className="mt-16">
           <div className="relative grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 sm:gap-x-0">
+            <div className="absolute -top-6 inset-x-0 hidden justify-between px-1 sm:flex" aria-hidden>
+              {processSteps.map((step, i) => (
+                <span
+                  key={step.index}
+                  className={`font-mono text-sm transition-all duration-500 ease-out ${
+                    active === i ? "scale-125 text-accent opacity-100" : "scale-100 text-muted opacity-30"
+                  }`}
+                >
+                  ✦
+                </span>
+              ))}
+            </div>
             <div className="absolute top-4 right-0 left-0 hidden h-px bg-border sm:block" aria-hidden />
             <motion.div
               className="absolute top-4 left-0 hidden h-px bg-accent sm:block"
@@ -33,7 +47,7 @@ export function HowIBuild() {
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 aria-pressed={active === i}
-                className="group relative flex flex-col items-start gap-4 text-left focus-visible:outline-none"
+                className="group relative flex flex-col items-start gap-4 text-left transition-transform duration-300 ease-out hover:-translate-y-0.5 focus-visible:outline-none"
               >
                 <span
                   className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 font-mono text-xs transition-colors group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2 ${

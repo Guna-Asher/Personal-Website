@@ -83,3 +83,66 @@ section[id] {
 .animate-marquee {
   animation: marquee 28s linear infinite;
 }
+
+@keyframes ambient-morph {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(calc(var(--ambient-drift-x, 8px) * 0.35), calc(var(--ambient-drift-y, 10px) * 0.35))
+      rotate(calc(var(--ambient-dir, 1) * 90deg)) scale(calc(1 + var(--ambient-scale, 0.12) * 0.6));
+  }
+  50% {
+    transform: translate(var(--ambient-drift-x, 8px), var(--ambient-drift-y, 10px))
+      rotate(calc(var(--ambient-dir, 1) * 180deg)) scale(calc(1 - var(--ambient-scale, 0.12) * 0.5));
+  }
+  75% {
+    transform: translate(calc(var(--ambient-drift-x, 8px) * 0.65), calc(var(--ambient-drift-y, 10px) * 0.65))
+      rotate(calc(var(--ambient-dir, 1) * 270deg)) scale(calc(1 + var(--ambient-scale, 0.12) * 0.3));
+  }
+  100% {
+    transform: translate(0, 0) rotate(calc(var(--ambient-dir, 1) * 360deg)) scale(1);
+  }
+}
+
+.ambient-object {
+  animation-name: ambient-morph;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ambient-shape-pulse {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  6% {
+    opacity: calc(var(--ambient-o, 1) * 0.5);
+  }
+  18% {
+    opacity: calc(var(--ambient-o, 1) * 0.5);
+  }
+  31% {
+    opacity: 0;
+  }
+}
+
+.ambient-shape {
+  animation-name: ambient-shape-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-object {
+    animation: none !important;
+    transform: none !important;
+  }
+  .ambient-shape {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .ambient-shape:first-child {
+    opacity: calc(var(--ambient-o, 1) * 0.4) !important;
+  }
+}

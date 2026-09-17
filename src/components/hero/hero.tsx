@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { Marquee } from "@/components/ui/marquee";
 import { CornerMarks } from "@/components/ui/corner-marks";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { site } from "@/lib/data/site";
 
 const headlineLines = ["I build applications —", "and the infrastructure", "that keeps them running."];
@@ -37,6 +38,8 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen flex-col justify-end overflow-hidden pt-32"
     >
+      <AmbientLayer seed="hero" variant="sparse" />
+
       <div className="absolute top-24 right-6 hidden font-mono text-xs text-muted sm:right-10 lg:right-16 md:block">
         <div className="relative border border-border px-4 py-3">
           <CornerMarks />

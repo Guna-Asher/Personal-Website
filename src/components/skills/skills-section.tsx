@@ -1,11 +1,13 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RevealText } from "@/components/ui/reveal-text";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { skillCategories } from "@/lib/data/skills";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-32 sm:py-40">
+    <section id="skills" className="relative py-32 sm:py-40">
+      <AmbientLayer seed="skills" variant="sparse" sizeRange={[6, 12]} />
       <Container>
         <SectionHeading index="03" eyebrow="Toolbox" title="Skills" />
 

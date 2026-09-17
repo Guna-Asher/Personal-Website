@@ -2,11 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { RevealText } from "@/components/ui/reveal-text";
 import { MagneticLink } from "@/components/ui/magnetic-link";
+import { InteractiveLink } from "@/components/ui/interactive-link";
+import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { site } from "@/lib/data/site";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-32 sm:py-40">
+    <section id="contact" className="relative py-32 sm:py-40">
+      <AmbientLayer seed="contact" variant="default" />
       <Container>
         <RevealText className="font-mono text-sm tracking-widest text-muted uppercase">
           05 — Contact
@@ -28,36 +31,27 @@ export function Contact() {
               className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
               aria-hidden
             />
+            <span
+              aria-hidden
+              className="scale-0 text-accent opacity-0 transition-all duration-300 ease-out group-hover:scale-100 group-hover:opacity-100"
+            >
+              ✦
+            </span>
           </MagneticLink>
         </RevealText>
 
-        <RevealText delay={0.15} className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
-          >
+        <RevealText delay={0.15} className="mt-10 flex flex-wrap gap-x-10 gap-y-3">
+          <InteractiveLink href={site.github} external>
             GitHub
-          </a>
+          </InteractiveLink>
           {site.linkedin && (
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
-            >
+            <InteractiveLink href={site.linkedin} external>
               LinkedIn
-            </a>
+            </InteractiveLink>
           )}
-          <a
-            href={site.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
-          >
+          <InteractiveLink href={site.resume} external>
             Resume
-          </a>
+          </InteractiveLink>
         </RevealText>
       </Container>
     </section>

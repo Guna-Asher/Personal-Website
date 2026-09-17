@@ -76,7 +76,7 @@ export function NavBar() {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 aria-current={isActive ? "true" : undefined}
-                className={`relative py-1 text-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
+                className={`relative inline-block py-1 text-sm transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
                   isActive ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
@@ -98,11 +98,11 @@ export function NavBar() {
           </div>
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none md:hidden"
+            className="group flex h-9 w-9 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none md:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
-            <Menu className="h-4 w-4" aria-hidden />
+            <Menu className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" aria-hidden />
           </button>
         </div>
       </Container>
@@ -125,11 +125,11 @@ export function NavBar() {
                 <ThemeToggle />
                 <button
                   type="button"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
                 >
-                  <X className="h-4 w-4" aria-hidden />
+                  <X className="h-4 w-4 transition-transform duration-300 group-hover:rotate-90" aria-hidden />
                 </button>
               </div>
             </Container>
