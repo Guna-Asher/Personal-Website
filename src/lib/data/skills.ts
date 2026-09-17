@@ -10,11 +10,7 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     label: "DevOps & Automation",
-    skills: ["Docker", "Docker Compose", "GitHub Actions", "CI/CD", "Bash", "Terraform"],
-  },
-  {
-    label: "Orchestration",
-    skills: ["Kubernetes"],
+    skills: ["Docker", "Docker Compose", "GitHub Actions", "CI/CD", "Bash", "Terraform", "Kubernetes"],
   },
   {
     label: "Backend",
