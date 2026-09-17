@@ -17,7 +17,7 @@ Personal portfolio site for Guna R, a Cloud & DevOps engineer. Built as a single
 - AWS Log Monitoring & Archival System
 - Portfolio Infrastructure Platform
 
-## Development
+## Run locally
 
 Install dependencies:
 
@@ -41,4 +41,25 @@ Run the production build locally:
 
 ```bash
 npm run start
+```
+
+## Run with Docker
+
+```bash
+docker build -t guna-portfolio .
+docker run --rm -p 3000:3000 guna-portfolio
+```
+
+## Run with Docker Compose
+
+```bash
+docker compose up --build
+```
+
+Either way, the site is available at [http://localhost:3000](http://localhost:3000).
+
+Stop the Compose service with:
+
+```bash
+docker compose down
 ```

@@ -6,7 +6,7 @@ import { TechnicalBackdrop } from "@/components/ui/technical-backdrop";
 import { EdgeLabel } from "@/components/ui/edge-label";
 import { site } from "@/lib/data/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
