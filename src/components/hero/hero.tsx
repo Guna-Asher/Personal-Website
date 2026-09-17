@@ -36,7 +36,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative isolate flex min-h-screen flex-col justify-end overflow-hidden pt-32"
+      className="relative isolate flex min-h-screen flex-col justify-end overflow-hidden pt-24 md:pt-28 lg:pt-32"
     >
       <AmbientLayer seed="hero" variant="sparse" />
 
@@ -58,7 +58,7 @@ export function Hero() {
                 variants={container}
                 initial="hidden"
                 animate="visible"
-                className="font-display max-w-5xl text-[clamp(2.5rem,7vw,6rem)] leading-[1.02] font-medium tracking-tight"
+                className="font-display text-display max-w-5xl font-medium tracking-tight"
               >
                 {headlineLines.map((text) => (
                   <span key={text} className="block overflow-hidden">
@@ -100,7 +100,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
-        className="group absolute right-6 bottom-24 hidden items-center gap-2 font-mono text-xs tracking-widest text-muted uppercase sm:right-10 lg:right-16 md:flex"
+        className="group absolute right-6 bottom-24 hidden items-center gap-2 font-mono text-xs tracking-widest text-muted uppercase md:right-8 md:flex lg:right-12 xl:right-16"
         aria-label="Scroll to introduction"
       >
         Scroll

@@ -52,7 +52,7 @@ export function NavBar() {
         scrolled ? "border-b border-border bg-background/80 backdrop-blur-md" : "border-b border-transparent"
       }`}
     >
-      <Container className="flex h-16 items-center justify-between sm:h-20">
+      <Container className="flex h-16 items-center justify-between md:h-20">
         <a
           href="#top"
           onClick={(e) => {
@@ -66,7 +66,7 @@ export function NavBar() {
           <span className="text-accent">.</span>
         </a>
 
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-5 md:flex lg:gap-7 xl:gap-9" aria-label="Primary">
           {navLinks.map((link) => {
             const id = link.href.slice(1);
             const isActive = activeId === id;
@@ -93,12 +93,12 @@ export function NavBar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="hidden sm:block">
+          <div className="hidden md:block">
             <ThemeToggle />
           </div>
           <button
             type="button"
-            className="group flex h-9 w-9 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none md:hidden"
+            className="group flex h-11 w-11 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none md:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -116,7 +116,7 @@ export function NavBar() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex flex-col bg-background md:hidden"
           >
-            <Container className="flex h-16 items-center justify-between sm:h-20">
+            <Container className="flex h-16 items-center justify-between md:h-20">
               <span className="font-display text-lg font-medium tracking-tight">
                 {site.initials}
                 <span className="text-accent">.</span>
@@ -125,7 +125,7 @@ export function NavBar() {
                 <ThemeToggle />
                 <button
                   type="button"
-                  className="group flex h-9 w-9 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+                  className="group flex h-11 w-11 items-center justify-center rounded-full border border-border transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-accent focus-visible:-translate-y-0.5 focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"
                 >

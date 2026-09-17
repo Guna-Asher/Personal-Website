@@ -11,7 +11,7 @@ export function CurrentlyBuilding() {
   if (!building) return null;
 
   return (
-    <section id="building" className="relative isolate py-32 sm:py-40">
+    <section id="building" className="relative isolate py-20 md:py-28 lg:py-32 xl:py-40">
       <AmbientLayer seed="building" variant="default" xRange={[45, 105]} />
       <Container>
         <SectionHeading index="02" eyebrow="In progress" title="Currently Building" />
@@ -26,7 +26,7 @@ export function CurrentlyBuilding() {
               </span>
             </RevealText>
             <RevealText delay={0.05}>
-              <h3 className="font-display text-3xl font-medium tracking-tight">{building.title}</h3>
+              <h3 className="font-display text-2xl font-medium tracking-tight md:text-3xl">{building.title}</h3>
             </RevealText>
             <RevealText delay={0.1}>
               <p className="mt-4 max-w-md text-muted">{building.description}</p>

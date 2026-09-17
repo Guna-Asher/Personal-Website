@@ -8,7 +8,7 @@ export function ProjectsSection() {
   const shipped = projects.filter((p) => p.status === "shipped");
 
   return (
-    <section id="projects" className="relative isolate py-32 sm:py-40">
+    <section id="projects" className="relative isolate py-20 md:py-28 lg:py-32 xl:py-40">
       <AmbientLayer seed="projects" variant="default" extend />
       <Container>
         <SectionHeading index="01" eyebrow="Selected work" title="Selected Projects" />

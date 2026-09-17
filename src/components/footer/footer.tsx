@@ -31,11 +31,11 @@ export function Footer() {
     <footer style={footerVars} className="relative isolate overflow-hidden bg-background text-foreground">
       <AmbientLayer seed="footer" variant="dense" extend />
 
-      <Container className="relative py-20 sm:py-28">
+      <Container className="relative py-16 md:py-20 lg:py-24 xl:py-28">
         <div className="grid gap-16 border-b border-border pb-16 lg:grid-cols-[2fr_1fr_1fr]">
           <div>
             <p className="font-mono text-xs tracking-widest text-muted uppercase">{site.role}</p>
-            <h2 className="font-display mt-4 text-[clamp(2.5rem,7vw,5rem)] leading-[1.02] font-medium tracking-tight">
+            <h2 className="font-display text-statement mt-4 font-medium tracking-tight">
               {site.name}
             </h2>
             <p className="mt-6 max-w-sm text-muted">
@@ -85,7 +85,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
+        <div className="mt-8 flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <p className="font-mono text-xs tracking-widest text-muted uppercase">
             © {year} {site.name} · built with Next.js
           </p>

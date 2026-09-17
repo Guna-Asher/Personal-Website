@@ -23,12 +23,12 @@ export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: n
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="grid w-full grid-cols-[3rem_1fr_1.5rem] items-start gap-x-6 gap-y-4 px-1 py-8 text-left transition-colors hover:bg-surface focus-visible:bg-surface focus-visible:outline-none sm:grid-cols-[4rem_1fr_auto] sm:items-center sm:gap-x-10 sm:px-4"
+          className="grid w-full grid-cols-[3rem_1fr_1.5rem] items-start gap-x-6 gap-y-4 px-1 py-8 text-left transition-colors hover:bg-surface focus-visible:bg-surface focus-visible:outline-none md:grid-cols-[4rem_1fr_auto] md:items-center md:gap-x-10 md:px-4"
         >
           <span className="font-mono text-sm text-muted">{project.index}</span>
 
           <div className="min-w-0">
-            <h3 className="font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent sm:text-3xl">
+            <h3 className="font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent md:text-3xl">
               {project.title}
             </h3>
             <p className="mt-1 font-mono text-xs tracking-widest text-muted uppercase">{project.type}</p>
@@ -46,7 +46,7 @@ export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: n
           </div>
 
           <Plus
-            className={`hidden h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:scale-110 group-hover:text-accent sm:block ${
+            className={`hidden h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:scale-110 group-hover:text-accent md:block ${
               open ? "rotate-45" : "rotate-0"
             }`}
             aria-hidden
@@ -62,7 +62,7 @@ export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: n
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
-              <div className="grid grid-cols-[3rem_1fr] gap-x-6 px-1 pb-8 sm:grid-cols-[4rem_1fr] sm:gap-x-10 sm:px-4">
+              <div className="grid grid-cols-[3rem_1fr] gap-x-6 px-1 pb-8 md:grid-cols-[4rem_1fr] md:gap-x-10 md:px-4">
                 <span aria-hidden />
                 <div className="max-w-lg">
                   <p className="text-muted">{project.description}</p>

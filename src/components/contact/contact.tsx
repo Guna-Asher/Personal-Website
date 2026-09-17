@@ -8,7 +8,7 @@ import { site } from "@/lib/data/site";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative isolate py-32 sm:py-40">
+    <section id="contact" className="relative isolate py-20 md:py-28 lg:py-32 xl:py-40">
       <AmbientLayer seed="contact" variant="default" />
       <Container>
         <RevealText className="font-mono text-sm tracking-widest text-muted uppercase">
@@ -16,7 +16,7 @@ export function Contact() {
         </RevealText>
 
         <RevealText delay={0.05}>
-          <p className="font-display mt-6 max-w-3xl text-[clamp(2rem,6vw,4.5rem)] leading-[1.05] font-medium tracking-tight">
+          <p className="font-display text-statement mt-6 max-w-3xl font-medium tracking-tight">
             Open to entry-level Cloud &amp; DevOps roles let&apos;s talk.
           </p>
         </RevealText>
@@ -24,7 +24,7 @@ export function Contact() {
         <RevealText delay={0.1} className="mt-10 inline-block">
           <MagneticLink
             href={`mailto:${site.email}`}
-            className="group inline-flex items-center gap-3 border-b-2 border-foreground pb-1 font-display text-2xl font-medium tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:text-4xl"
+            className="group inline-flex items-center gap-3 border-b-2 border-foreground pb-1 font-display text-2xl font-medium tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none md:text-3xl lg:text-4xl"
           >
             {site.email}
             <ArrowUpRight

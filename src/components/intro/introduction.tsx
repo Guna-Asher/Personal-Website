@@ -4,7 +4,7 @@ import { AmbientLayer } from "@/components/ui/ambient-layer";
 
 export function Introduction() {
   return (
-    <section id="intro" className="relative isolate py-32 sm:py-40">
+    <section id="intro" className="relative isolate py-20 md:py-28 lg:py-32 xl:py-40">
       <AmbientLayer seed="intro" variant="sparse" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_2.5fr]">
@@ -14,7 +14,7 @@ export function Introduction() {
 
           <div className="max-w-3xl space-y-6">
             <RevealText>
-              <p className="font-display text-[clamp(1.5rem,3.4vw,2.75rem)] leading-[1.3] font-medium tracking-tight">
+              <p className="font-display text-lead font-medium tracking-tight">
                 I&apos;m early in my career and I&apos;d rather show that honestly through working
                 systems than dress it up.
               </p>

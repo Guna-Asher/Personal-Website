@@ -15,7 +15,7 @@ export function HeroTerminal() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4 }}
-      className="w-full max-w-[420px]"
+      className="w-full max-w-[360px] md:max-w-[400px] lg:max-w-[420px]"
     >
       <motion.div
         animate={{ y: [0, -6, 0] }}

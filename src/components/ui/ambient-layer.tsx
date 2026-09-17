@@ -6,7 +6,7 @@ import { generateAmbientObjects, type AmbientVariant } from "@/lib/ambient/gener
 
 const TIER_CLASS: Record<string, string> = {
   mobile: "",
-  tablet: "hidden sm:block",
+  tablet: "hidden md:block",
   desktop: "hidden lg:block",
 };
 

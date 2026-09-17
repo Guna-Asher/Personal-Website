@@ -6,12 +6,12 @@ import { skillCategories } from "@/lib/data/skills";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="relative isolate py-32 sm:py-40">
+    <section id="skills" className="relative isolate py-20 md:py-28 lg:py-32 xl:py-40">
       <AmbientLayer seed="skills" variant="sparse" scale={0.55} allowLarge={false} />
       <Container>
         <SectionHeading index="03" eyebrow="Toolbox" title="Skills" />
 
-        <div className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {skillCategories.map((category, i) => (
             <RevealText key={category.label} delay={i * 0.06}>
               <h3 className="font-mono text-xs tracking-widest text-muted uppercase">
