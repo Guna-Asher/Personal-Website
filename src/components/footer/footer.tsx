@@ -15,6 +15,8 @@ const footerVars = {
   "--color-surface": "rgba(242, 241, 236, 0.06)",
   "--color-accent": "#5b93ff",
   "--color-accent-fg": "#0a0b0d",
+  "--ambient-symbol-color": "#f5f5f5",
+  "--ambient-theme-boost": 0.06,
 } as CSSProperties;
 
 function scrollToId(e: MouseEvent<HTMLAnchorElement>, id: string) {
@@ -26,7 +28,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer style={footerVars} className="relative overflow-hidden bg-background text-foreground">
+    <footer style={footerVars} className="relative isolate overflow-hidden bg-background text-foreground">
       <AmbientLayer seed="footer" variant="dense" extend />
 
       <Container className="relative py-20 sm:py-28">
@@ -65,11 +67,13 @@ export function Footer() {
                   GitHub
                 </InteractiveLink>
               </li>
-              <li>
-                <InteractiveLink href={site.resume} external>
-                  Resume
-                </InteractiveLink>
-              </li>
+              {site.resume && (
+                <li>
+                  <InteractiveLink href={site.resume} external>
+                    Resume
+                  </InteractiveLink>
+                </li>
+              )}
               {site.linkedin && (
                 <li>
                   <InteractiveLink href={site.linkedin} external>

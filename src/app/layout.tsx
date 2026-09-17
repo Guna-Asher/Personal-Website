@@ -4,6 +4,9 @@ import "./globals.css";
 import { ThemeProvider, themeInitScript } from "@/components/theme/theme-provider";
 import { TechnicalBackdrop } from "@/components/ui/technical-backdrop";
 import { EdgeLabel } from "@/components/ui/edge-label";
+import { site } from "@/lib/data/site";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -23,10 +26,26 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+const title = "Guna R — Cloud & DevOps Engineer";
+const description =
+  "Portfolio of Guna R — an aspiring Cloud & DevOps Engineer who builds applications and the infrastructure that runs them.";
+
 export const metadata: Metadata = {
-  title: "Guna R — Cloud & DevOps Engineer",
-  description:
-    "Portfolio of Guna R — an aspiring Cloud & DevOps Engineer who builds applications and the infrastructure that runs them.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: siteUrl,
+    siteName: site.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

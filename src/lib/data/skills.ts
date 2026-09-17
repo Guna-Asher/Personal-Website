@@ -13,6 +13,10 @@ export const skillCategories: SkillCategory[] = [
     skills: ["Docker", "Docker Compose", "GitHub Actions", "CI/CD", "Bash", "Terraform"],
   },
   {
+    label: "Orchestration",
+    skills: ["Kubernetes"],
+  },
+  {
     label: "Backend",
     skills: ["Python", "FastAPI", "REST APIs", "PostgreSQL", "SQL", "SQLAlchemy", "Alembic"],
   },

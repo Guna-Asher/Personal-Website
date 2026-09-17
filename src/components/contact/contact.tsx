@@ -8,7 +8,7 @@ import { site } from "@/lib/data/site";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-32 sm:py-40">
+    <section id="contact" className="relative isolate py-32 sm:py-40">
       <AmbientLayer seed="contact" variant="default" />
       <Container>
         <RevealText className="font-mono text-sm tracking-widest text-muted uppercase">
@@ -49,9 +49,11 @@ export function Contact() {
               LinkedIn
             </InteractiveLink>
           )}
-          <InteractiveLink href={site.resume} external>
-            Resume
-          </InteractiveLink>
+          {site.resume && (
+            <InteractiveLink href={site.resume} external>
+              Resume
+            </InteractiveLink>
+          )}
         </RevealText>
       </Container>
     </section>

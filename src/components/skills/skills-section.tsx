@@ -6,8 +6,8 @@ import { skillCategories } from "@/lib/data/skills";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="relative py-32 sm:py-40">
-      <AmbientLayer seed="skills" variant="sparse" sizeRange={[6, 12]} />
+    <section id="skills" className="relative isolate py-32 sm:py-40">
+      <AmbientLayer seed="skills" variant="sparse" scale={0.55} allowLarge={false} />
       <Container>
         <SectionHeading index="03" eyebrow="Toolbox" title="Skills" />
 

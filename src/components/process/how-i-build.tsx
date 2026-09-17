@@ -12,7 +12,7 @@ export function HowIBuild() {
   const activeStep = processSteps[active];
 
   return (
-    <section id="process" className="relative py-32 sm:py-40">
+    <section id="process" className="relative isolate py-32 sm:py-40">
       <AmbientLayer seed="process" variant="sparse" />
       <Container>
         <SectionHeading index="04" eyebrow="Methodology" title="How I Build" />

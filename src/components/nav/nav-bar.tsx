@@ -66,7 +66,7 @@ export function NavBar() {
           <span className="text-accent">.</span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-9 md:flex" aria-label="Primary">
           {navLinks.map((link) => {
             const id = link.href.slice(1);
             const isActive = activeId === id;
@@ -76,14 +76,14 @@ export function NavBar() {
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
                 aria-current={isActive ? "true" : undefined}
-                className={`relative inline-block py-1 text-sm transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
+                className={`relative inline-block px-1 py-2 text-[15px] transition-all duration-300 ease-out hover:-translate-y-0.5 focus-visible:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
                   isActive ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0"
+                  className={`absolute -bottom-0.5 left-1 h-px bg-accent transition-all duration-300 ${
+                    isActive ? "w-[calc(100%-0.5rem)]" : "w-0"
                   }`}
                   aria-hidden
                 />

@@ -10,13 +10,23 @@ const TIER_CLASS: Record<string, string> = {
   desktop: "hidden lg:block",
 };
 
+// Fixed precision keeps the server-rendered string and the client's
+// re-computed value identical — long floating-point tails can otherwise
+// print with different digit counts between environments and trip a
+// hydration mismatch even though the underlying number is the same.
+function round(n: number, decimals = 3): number {
+  const factor = 10 ** decimals;
+  return Math.round(n * factor) / factor;
+}
+
 export function AmbientLayer({
   seed,
   variant = "default",
   className = "",
   xRange,
   yRange,
-  sizeRange,
+  scale,
+  allowLarge,
   extend = false,
 }: {
   seed: string;
@@ -24,13 +34,14 @@ export function AmbientLayer({
   className?: string;
   xRange?: [number, number];
   yRange?: [number, number];
-  sizeRange?: [number, number];
+  scale?: number;
+  allowLarge?: boolean;
   extend?: boolean;
 }) {
   const objects = useMemo(
-    () => generateAmbientObjects(seed, variant, { xRange, yRange, sizeRange }),
+    () => generateAmbientObjects(seed, variant, { xRange, yRange, scale, allowLarge }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [seed, variant, xRange?.[0], xRange?.[1], yRange?.[0], yRange?.[1], sizeRange?.[0], sizeRange?.[1]],
+    [seed, variant, xRange?.[0], xRange?.[1], yRange?.[0], yRange?.[1], scale, allowLarge],
   );
 
   const ref = useRef<HTMLDivElement>(null);
@@ -52,17 +63,17 @@ export function AmbientLayer({
           className={`ambient-object absolute font-mono select-none ${TIER_CLASS[o.tier]}`}
           style={
             {
-              left: `${o.xPct}%`,
-              top: `${o.yPct}%`,
-              width: `${o.size}px`,
-              height: `${o.size}px`,
-              fontSize: `${o.size}px`,
-              animationDuration: `${o.duration}s`,
-              animationDelay: `${o.delay}s`,
+              left: `${round(o.xPct, 2)}%`,
+              top: `${round(o.yPct, 2)}%`,
+              animationDuration: `${round(o.duration, 2)}s`,
+              animationDelay: `${round(o.delay, 2)}s`,
               "--ambient-dir": o.direction,
-              "--ambient-drift-x": `${o.driftX}px`,
-              "--ambient-drift-y": `${o.driftY}px`,
-              "--ambient-scale": o.scaleDelta,
+              "--ambient-drift-x": `${round(o.driftX, 2)}px`,
+              "--ambient-drift-y": `${round(o.driftY, 2)}px`,
+              "--ambient-scale": round(o.scaleDelta, 4),
+              "--ambient-rot-quarter": `${round(o.rotQuarter, 1)}deg`,
+              "--ambient-size-mobile": `${round(o.sizeMobile, 1)}px`,
+              "--ambient-size-desktop": `${round(o.sizeDesktop, 1)}px`,
             } as CSSProperties
           }
         >
@@ -70,13 +81,13 @@ export function AmbientLayer({
             <span
               key={i}
               className={`ambient-shape absolute inset-0 flex items-center justify-center leading-none ${
-                o.accent ? "text-accent" : "text-muted"
+                o.accent ? "text-accent" : "text-ambient"
               }`}
               style={
                 {
-                  animationDuration: `${o.duration}s`,
-                  animationDelay: `${o.delay - (i * o.duration) / 4}s`,
-                  "--ambient-o": o.opacity,
+                  animationDuration: `${round(o.duration, 2)}s`,
+                  animationDelay: `${round(o.delay - (i * o.duration) / 4, 2)}s`,
+                  "--ambient-o": round(o.opacity, 3),
                 } as CSSProperties
               }
             >

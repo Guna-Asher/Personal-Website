@@ -4,7 +4,7 @@ import { AmbientLayer } from "@/components/ui/ambient-layer";
 
 export function Introduction() {
   return (
-    <section id="intro" className="relative py-32 sm:py-40">
+    <section id="intro" className="relative isolate py-32 sm:py-40">
       <AmbientLayer seed="intro" variant="sparse" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[1fr_2.5fr]">

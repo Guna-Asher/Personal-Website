@@ -36,17 +36,17 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative flex min-h-screen flex-col justify-end overflow-hidden pt-32"
+      className="relative isolate flex min-h-screen flex-col justify-end overflow-hidden pt-32"
     >
       <AmbientLayer seed="hero" variant="sparse" />
 
-      <div className="absolute top-24 right-6 hidden font-mono text-xs text-muted sm:right-10 lg:right-16 md:block">
-        <div className="relative border border-border px-4 py-3">
+      <div className="absolute top-24 right-6 hidden font-mono text-sm text-muted sm:right-10 lg:right-16 md:block">
+        <div className="relative min-w-[190px] border border-border px-5 py-4 leading-relaxed">
           <CornerMarks />
           <p className="tracking-wide">
             <span className="text-accent">$</span> whoami
           </p>
-          <p className="mt-1 text-foreground">guna-r · {site.location}</p>
+          <p className="mt-1.5 text-foreground">guna-r · {site.location}</p>
         </div>
       </div>
 
