@@ -23,7 +23,7 @@ export type AmbientObject = {
 
 export type AmbientVariant = "sparse" | "default" | "dense";
 
-const SHAPE_POOL = ["✦", "+", "✧", "⊹", "·", "○", "✺", "✿", "❋"];
+const SHAPE_POOL = ["✦", "✧", "✣", "✥", "✺", "✹", "+", "×", "⊹", "*"];
 
 const VARIANT_COUNTS: Record<AmbientVariant, { mobile: number; tablet: number; desktop: number }> = {
   sparse: { mobile: 2, tablet: 4, desktop: 6 },
@@ -32,10 +32,12 @@ const VARIANT_COUNTS: Record<AmbientVariant, { mobile: number; tablet: number; d
 };
 
 // [desktopMin, desktopMax], [mobileMin, mobileMax]
+// "large" here is the occasional upper end of the range, capped at 40px —
+// never the oversized/dominant scale the ambient layer explicitly avoids.
 const SIZE_RANGES: Record<AmbientSizeClass, { desktop: [number, number]; mobile: [number, number] }> = {
-  small: { desktop: [24, 32], mobile: [18, 24] },
-  medium: { desktop: [40, 64], mobile: [28, 42] },
-  large: { desktop: [70, 110], mobile: [45, 70] },
+  small: { desktop: [8, 18], mobile: [6, 12] },
+  medium: { desktop: [18, 30], mobile: [12, 20] },
+  large: { desktop: [30, 40], mobile: [18, 26] },
 };
 
 const MOTION_BY_CLASS: Record<
@@ -43,14 +45,14 @@ const MOTION_BY_CLASS: Record<
   { drift: [number, number]; scale: [number, number]; rotQuarter: [number, number]; duration: [number, number] }
 > = {
   small: { drift: [3, 8], scale: [0.04, 0.08], rotQuarter: [12, 30], duration: [6, 11] },
-  medium: { drift: [8, 16], scale: [0.1, 0.18], rotQuarter: [40, 70], duration: [10, 17] },
-  large: { drift: [16, 34], scale: [0.2, 0.32], rotQuarter: [70, 90], duration: [16, 26] },
+  medium: { drift: [6, 12], scale: [0.08, 0.14], rotQuarter: [30, 55], duration: [9, 15] },
+  large: { drift: [10, 18], scale: [0.12, 0.2], rotQuarter: [45, 70], duration: [12, 20] },
 };
 
 const OPACITY_BY_CLASS: Record<AmbientSizeClass, [number, number]> = {
   small: [0.16, 0.28],
-  medium: [0.24, 0.4],
-  large: [0.32, 0.52],
+  medium: [0.22, 0.36],
+  large: [0.28, 0.42],
 };
 
 function hashSeed(seed: string): number {
@@ -84,7 +86,7 @@ function pickSizeClass(rng: () => number, allowLarge: boolean): AmbientSizeClass
   const r = rng();
   if (allowLarge) {
     if (r < 0.55) return "small";
-    if (r < 0.85) return "medium";
+    if (r < 0.9) return "medium";
     return "large";
   }
   return r < 0.6 ? "small" : "medium";

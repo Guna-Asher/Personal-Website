@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, themeInitScript } from "@/components/theme/theme-provider";
 import { TechnicalBackdrop } from "@/components/ui/technical-backdrop";
-import { EdgeLabel } from "@/components/ui/edge-label";
 import { site } from "@/lib/data/site";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -61,7 +60,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-background text-foreground antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <TechnicalBackdrop />
-          <EdgeLabel />
           <div className="relative z-10">{children}</div>
         </ThemeProvider>
       </body>

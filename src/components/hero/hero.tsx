@@ -5,8 +5,8 @@ import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { Marquee } from "@/components/ui/marquee";
-import { CornerMarks } from "@/components/ui/corner-marks";
 import { AmbientLayer } from "@/components/ui/ambient-layer";
+import { HeroTerminal } from "@/components/hero/hero-terminal";
 import { site } from "@/lib/data/site";
 
 const headlineLines = ["I build applications —", "and the infrastructure", "that keeps them running."];
@@ -40,52 +40,50 @@ export function Hero() {
     >
       <AmbientLayer seed="hero" variant="sparse" />
 
-      <div className="absolute top-24 right-6 hidden font-mono text-sm text-muted sm:right-10 lg:right-16 md:block">
-        <div className="relative min-w-[190px] border border-border px-5 py-4 leading-relaxed">
-          <CornerMarks />
-          <p className="tracking-wide">
-            <span className="text-accent">$</span> whoami
-          </p>
-          <p className="mt-1.5 text-foreground">guna-r · {site.location}</p>
-        </div>
-      </div>
-
       <motion.div style={{ y, opacity }} className="flex flex-1 flex-col justify-center">
-        <Container className="flex flex-col gap-8">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center gap-2 font-mono text-sm tracking-widest text-muted uppercase"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-            {site.role} · Open to opportunities
-          </motion.p>
+        <Container>
+          <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+            <div className="flex max-w-2xl flex-col gap-8">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex items-center gap-2 font-mono text-sm tracking-widest text-muted uppercase"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+                {site.role} · Open to opportunities
+              </motion.p>
 
-          <motion.h1
-            variants={container}
-            initial="hidden"
-            animate="visible"
-            className="font-display max-w-5xl text-[clamp(2.5rem,7vw,6rem)] leading-[1.02] font-medium tracking-tight"
-          >
-            {headlineLines.map((text) => (
-              <span key={text} className="block overflow-hidden">
-                <motion.span variants={line} className="block">
-                  {text}
-                </motion.span>
-              </span>
-            ))}
-          </motion.h1>
+              <motion.h1
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                className="font-display max-w-5xl text-[clamp(2.5rem,7vw,6rem)] leading-[1.02] font-medium tracking-tight"
+              >
+                {headlineLines.map((text) => (
+                  <span key={text} className="block overflow-hidden">
+                    <motion.span variants={line} className="block">
+                      {text}
+                    </motion.span>
+                  </span>
+                ))}
+              </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="max-w-xl text-lg text-muted"
-          >
-            I&apos;m {site.name}, an entry-level Cloud &amp; DevOps engineer. I ship real backend
-            products, then containerize, deploy, and operate them myself.
-          </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="max-w-xl text-lg text-muted"
+              >
+                I&apos;m {site.name}, an entry-level Cloud &amp; DevOps engineer. I ship real backend
+                products, then containerize, deploy, and operate them myself.
+              </motion.p>
+            </div>
+
+            <div className="flex justify-center lg:w-[360px] lg:shrink-0 lg:justify-end">
+              <HeroTerminal />
+            </div>
+          </div>
         </Container>
       </motion.div>
 
