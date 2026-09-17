@@ -1,42 +1,91 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Plus } from "lucide-react";
+import { useState, type MouseEvent } from "react";
 import { RevealText } from "@/components/ui/reveal-text";
+import { CornerMarks } from "@/components/ui/corner-marks";
 import type { Project } from "@/lib/data/projects";
 
 export function ProjectRow({ project, delay = 0 }: { project: Project; delay?: number }) {
+  const [open, setOpen] = useState(false);
+
+  function handleGithubClick(e: MouseEvent) {
+    e.stopPropagation();
+  }
+
   return (
     <RevealText delay={delay}>
-      <a
-        href={project.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group grid grid-cols-[3rem_1fr] items-start gap-x-6 gap-y-4 border-b border-border py-8 transition-colors hover:bg-surface sm:grid-cols-[4rem_1fr_auto] sm:items-center sm:gap-x-10 sm:px-4"
-      >
-        <span className="font-mono text-sm text-muted">{project.index}</span>
+      <div className="group relative border-b border-border">
+        <CornerMarks className="opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className="grid w-full grid-cols-[3rem_1fr_1.5rem] items-start gap-x-6 gap-y-4 px-1 py-8 text-left transition-colors hover:bg-surface focus-visible:bg-surface focus-visible:outline-none sm:grid-cols-[4rem_1fr_auto] sm:items-center sm:gap-x-10 sm:px-4"
+        >
+          <span className="font-mono text-sm text-muted">{project.index}</span>
 
-        <div className="min-w-0">
-          <h3 className="font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent sm:text-3xl">
-            {project.title}
-          </h3>
-          <p className="mt-2 max-w-lg text-muted">{project.oneLiner}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {project.tech.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-border px-3 py-1 font-mono text-xs text-muted"
-              >
-                {tech}
-              </span>
-            ))}
+          <div className="min-w-0">
+            <h3 className="font-display text-2xl font-medium tracking-tight transition-colors group-hover:text-accent sm:text-3xl">
+              {project.title}
+            </h3>
+            <p className="mt-1 font-mono text-xs tracking-widest text-muted uppercase">{project.type}</p>
+            <p className="mt-3 max-w-lg text-muted">{project.oneLiner}</p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-border px-3 py-1 font-mono text-xs text-muted"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <ArrowUpRight
-          className="hidden h-6 w-6 shrink-0 text-muted transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-accent sm:block"
-          aria-hidden
-        />
-      </a>
+          <Plus
+            className={`hidden h-5 w-5 shrink-0 text-muted transition-transform duration-300 group-hover:text-accent sm:block ${
+              open ? "rotate-45" : "rotate-0"
+            }`}
+            aria-hidden
+          />
+        </button>
+
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="grid grid-cols-[3rem_1fr] gap-x-6 px-1 pb-8 sm:grid-cols-[4rem_1fr] sm:gap-x-10 sm:px-4">
+                <span aria-hidden />
+                <div className="max-w-lg">
+                  <p className="text-muted">{project.description}</p>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleGithubClick}
+                    className="group/link mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-widest text-foreground uppercase focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+                  >
+                    <span className="border-b border-foreground pb-0.5 transition-colors group-hover/link:border-accent group-hover/link:text-accent">
+                      View source on GitHub
+                    </span>
+                    <ArrowUpRight
+                      className="h-3.5 w-3.5 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 group-hover/link:text-accent"
+                      aria-hidden
+                    />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </RevealText>
   );
 }

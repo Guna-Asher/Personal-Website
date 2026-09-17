@@ -21,7 +21,7 @@ export function Contact() {
         <RevealText delay={0.1} className="mt-10 inline-block">
           <MagneticLink
             href={`mailto:${site.email}`}
-            className="group inline-flex items-center gap-3 border-b-2 border-foreground pb-1 font-display text-2xl font-medium tracking-tight transition-colors hover:border-accent hover:text-accent sm:text-4xl"
+            className="group inline-flex items-center gap-3 border-b-2 border-foreground pb-1 font-display text-2xl font-medium tracking-tight transition-colors hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none sm:text-4xl"
           >
             {site.email}
             <ArrowUpRight
@@ -36,17 +36,27 @@ export function Contact() {
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-accent"
+            className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
           >
             GitHub
           </a>
+          {site.linkedin && (
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
+            >
+              LinkedIn
+            </a>
+          )}
           <a
-            href={site.linkedin}
+            href={site.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted transition-colors hover:text-accent"
+            className="text-muted transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
           >
-            LinkedIn
+            Resume
           </a>
         </RevealText>
       </Container>

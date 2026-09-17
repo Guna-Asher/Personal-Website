@@ -1,9 +1,12 @@
-export function Marquee({ items }: { items: string[] }) {
+export function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
   const track = [...items, ...items];
 
   return (
     <div className="relative flex w-full overflow-hidden border-y border-border py-4">
-      <div className="flex w-max shrink-0 animate-marquee gap-8 pr-8">
+      <div
+        className="flex w-max shrink-0 animate-marquee gap-8 pr-8"
+        style={reverse ? { animationDirection: "reverse" } : undefined}
+      >
         {track.map((item, i) => (
           <span
             key={`${item}-${i}`}

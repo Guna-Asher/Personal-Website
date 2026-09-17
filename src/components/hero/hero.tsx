@@ -1,9 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { useRef } from "react";
 import { Container } from "@/components/ui/container";
 import { Marquee } from "@/components/ui/marquee";
+import { CornerMarks } from "@/components/ui/corner-marks";
 import { site } from "@/lib/data/site";
 
 const headlineLines = ["I build applications —", "and the infrastructure", "that keeps them running."];
@@ -24,44 +26,65 @@ const line = {
 };
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
   return (
-    <section id="top" className="relative flex min-h-screen flex-col justify-end pt-32">
-      <Container className="flex flex-1 flex-col justify-center gap-8">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center gap-2 font-mono text-sm tracking-widest text-muted uppercase"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-          {site.role} · Open to opportunities
-        </motion.p>
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative flex min-h-screen flex-col justify-end overflow-hidden pt-32"
+    >
+      <div className="absolute top-24 right-6 hidden font-mono text-xs text-muted sm:right-10 lg:right-16 md:block">
+        <div className="relative border border-border px-4 py-3">
+          <CornerMarks />
+          <p className="tracking-wide">
+            <span className="text-accent">$</span> whoami
+          </p>
+          <p className="mt-1 text-foreground">guna-r · {site.location}</p>
+        </div>
+      </div>
 
-        <motion.h1
-          variants={container}
-          initial="hidden"
-          animate="visible"
-          className="font-display max-w-5xl text-[clamp(2.5rem,7vw,6rem)] leading-[1.02] font-medium tracking-tight"
-        >
-          {headlineLines.map((text) => (
-            <span key={text} className="block overflow-hidden">
-              <motion.span variants={line} className="block">
-                {text}
-              </motion.span>
-            </span>
-          ))}
-        </motion.h1>
+      <motion.div style={{ y, opacity }} className="flex flex-1 flex-col justify-center">
+        <Container className="flex flex-col gap-8">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-2 font-mono text-sm tracking-widest text-muted uppercase"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+            {site.role} · Open to opportunities
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="max-w-xl text-lg text-muted"
-        >
-          I&apos;m {site.name}, an entry-level Cloud &amp; DevOps engineer. I ship real backend
-          products, then containerize, deploy, and operate them myself.
-        </motion.p>
-      </Container>
+          <motion.h1
+            variants={container}
+            initial="hidden"
+            animate="visible"
+            className="font-display max-w-5xl text-[clamp(2.5rem,7vw,6rem)] leading-[1.02] font-medium tracking-tight"
+          >
+            {headlineLines.map((text) => (
+              <span key={text} className="block overflow-hidden">
+                <motion.span variants={line} className="block">
+                  {text}
+                </motion.span>
+              </span>
+            ))}
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="max-w-xl text-lg text-muted"
+          >
+            I&apos;m {site.name}, an entry-level Cloud &amp; DevOps engineer. I ship real backend
+            products, then containerize, deploy, and operate them myself.
+          </motion.p>
+        </Container>
+      </motion.div>
 
       <Marquee
         items={["FastAPI", "PostgreSQL", "Docker", "AWS EC2 & S3", "GitHub Actions", "Terraform", "Linux"]}
@@ -69,6 +92,10 @@ export function Hero() {
 
       <motion.a
         href="#intro"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById("intro")?.scrollIntoView({ behavior: "smooth" });
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}

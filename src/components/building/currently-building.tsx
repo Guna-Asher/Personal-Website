@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { RevealText } from "@/components/ui/reveal-text";
+import { CornerMarks } from "@/components/ui/corner-marks";
 import { InfraStepTracker } from "./infra-step-tracker";
 import { projects } from "@/lib/data/projects";
 
@@ -14,7 +15,8 @@ export function CurrentlyBuilding() {
         <SectionHeading index="02" eyebrow="In progress" title="Currently Building" />
 
         <div className="mt-12 grid gap-16 lg:grid-cols-2">
-          <div>
+          <div className="relative p-6">
+            <CornerMarks />
             <RevealText>
               <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent/40 px-3 py-1 font-mono text-xs tracking-widest text-accent uppercase">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />

@@ -30,11 +30,13 @@ export function HowIBuild() {
                 key={step.index}
                 type="button"
                 onClick={() => setActive(i)}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
                 aria-pressed={active === i}
-                className="group relative flex flex-col items-start gap-4 text-left"
+                className="group relative flex flex-col items-start gap-4 text-left focus-visible:outline-none"
               >
                 <span
-                  className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 font-mono text-xs transition-colors ${
+                  className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 font-mono text-xs transition-colors group-focus-visible:ring-2 group-focus-visible:ring-accent group-focus-visible:ring-offset-2 ${
                     active === i
                       ? "border-accent bg-accent text-accent-foreground"
                       : "border-border bg-background text-muted group-hover:border-accent"

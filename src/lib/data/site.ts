@@ -1,10 +1,14 @@
 export const site = {
-  name: "Guna Asher",
+  name: "Guna R",
+  initials: "GR",
   role: "Cloud & DevOps Engineer",
   tagline: "I build applications — and the infrastructure that keeps them running.",
-  email: "your.email@example.com",
+  email: "gunardsce@gmail.com",
   github: "https://github.com/Guna-Asher",
-  linkedin: "https://linkedin.com/in/your-handle",
+  // Add your LinkedIn URL here when ready — the link only renders once this is set.
+  linkedin: "",
+  // Drop a resume file at /public/resume.pdf to make this link live.
+  resume: "/resume.pdf",
   location: "India",
 };
 
