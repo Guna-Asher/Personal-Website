@@ -15,21 +15,21 @@ export function HeroTerminal() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4 }}
-      className="w-full max-w-[340px]"
+      className="w-full max-w-[420px]"
     >
       <motion.div
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="overflow-hidden rounded-xl border border-border bg-surface font-mono text-xs shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]"
+        className="overflow-hidden rounded-xl border border-border bg-surface font-mono text-sm shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]"
       >
-        <div className="flex items-center gap-1.5 border-b border-border px-4 py-3">
+        <div className="flex items-center gap-1.5 border-b border-border px-5 py-3.5">
           <span className="h-2.5 w-2.5 rounded-full border border-border" aria-hidden />
           <span className="h-2.5 w-2.5 rounded-full border border-border" aria-hidden />
           <span className="h-2.5 w-2.5 rounded-full border border-border" aria-hidden />
-          <span className="ml-2 text-[10px] tracking-widest text-muted uppercase">portfolio — zsh</span>
+          <span className="ml-2 text-[11px] tracking-widest text-muted uppercase">portfolio — zsh</span>
         </div>
 
-        <div className="flex flex-col gap-3 px-5 py-5 leading-relaxed text-muted">
+        <div className="flex flex-col gap-3.5 px-6 py-6 leading-relaxed text-muted">
           <p>
             <span className="text-accent">$</span> whoami
           </p>

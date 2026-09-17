@@ -80,7 +80,7 @@ export function Hero() {
               </motion.p>
             </div>
 
-            <div className="flex justify-center lg:w-[360px] lg:shrink-0 lg:justify-end">
+            <div className="flex justify-center lg:w-[440px] lg:shrink-0 lg:justify-end">
               <HeroTerminal />
             </div>
           </div>
