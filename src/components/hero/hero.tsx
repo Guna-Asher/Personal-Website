@@ -9,7 +9,7 @@ import { AmbientLayer } from "@/components/ui/ambient-layer";
 import { HeroTerminal } from "@/components/hero/hero-terminal";
 import { site } from "@/lib/data/site";
 
-const headlineLines = ["I build applications —", "and the infrastructure", "that keeps them running."];
+const headlineLines = ["I build applications", "and the infrastructure", "that keeps them running."];
 
 const container = {
   hidden: {},

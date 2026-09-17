@@ -33,7 +33,7 @@ export function CurrentlyBuilding() {
             </RevealText>
             <RevealText delay={0.15}>
               <p className="mt-6 text-sm text-muted">
-                This isn&apos;t finished — the tracker on the right is the honest, current state of
+                This isn&apos;t finished, The tracker on the right is the honest, current state of
                 the build, not a claim that it&apos;s done.
               </p>
             </RevealText>

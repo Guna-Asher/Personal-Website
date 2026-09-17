@@ -11,14 +11,14 @@ export const processSteps: ProcessStep[] = [
     title: "Plan",
     summary: "Understand the problem and define the system.",
     detail:
-      "Before writing code, I map out what the system actually needs to do — the data, the users, the failure modes — so the architecture isn't a guess.",
+      "Before writing code, I map out what the system actually needs to do the data, the users, the failure modes so the architecture isn't a guess.",
   },
   {
     index: "02",
     title: "Build",
     summary: "Write the application and make it work.",
     detail:
-      "APIs, database models, auth, payments — built with FastAPI and PostgreSQL, tested against real usage rather than happy-path demos.",
+      "APIs, database models, auth, payments built with FastAPI and PostgreSQL, tested against real usage rather than happy-path demos.",
   },
   {
     index: "03",
@@ -32,6 +32,6 @@ export const processSteps: ProcessStep[] = [
     title: "Operate",
     summary: "Monitor it, troubleshoot it, and improve it.",
     detail:
-      "Logs, metrics, and archival so I know when something breaks — and can trace why — instead of finding out from a user.",
+      "Logs, metrics, and archival so I know when something breaks and can trace why instead of finding out from a user.",
   },
 ];

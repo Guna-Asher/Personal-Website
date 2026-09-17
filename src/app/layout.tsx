@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const title = "Guna R — Cloud & DevOps Engineer";
+const title = "Guna R - Cloud & DevOps Engineer";
 const description =
   "Portfolio of Guna R — an aspiring Cloud & DevOps Engineer who builds applications and the infrastructure that runs them.";
 

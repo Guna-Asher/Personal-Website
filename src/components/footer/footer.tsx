@@ -39,7 +39,7 @@ export function Footer() {
               {site.name}
             </h2>
             <p className="mt-6 max-w-sm text-muted">
-              Building applications — and the infrastructure that keeps them running.
+              Building applications and the infrastructure that keeps them running.
             </p>
           </div>
 

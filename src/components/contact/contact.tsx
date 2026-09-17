@@ -17,7 +17,7 @@ export function Contact() {
 
         <RevealText delay={0.05}>
           <p className="font-display mt-6 max-w-3xl text-[clamp(2rem,6vw,4.5rem)] leading-[1.05] font-medium tracking-tight">
-            Open to entry-level Cloud &amp; DevOps roles — let&apos;s talk.
+            Open to entry-level Cloud &amp; DevOps roles let&apos;s talk.
           </p>
         </RevealText>
 

@@ -15,15 +15,15 @@ export function Introduction() {
           <div className="max-w-3xl space-y-6">
             <RevealText>
               <p className="font-display text-[clamp(1.5rem,3.4vw,2.75rem)] leading-[1.3] font-medium tracking-tight">
-                I&apos;m early in my career — and I&apos;d rather show that honestly through working
+                I&apos;m early in my career and I&apos;d rather show that honestly through working
                 systems than dress it up.
               </p>
             </RevealText>
             <RevealText delay={0.1}>
               <p className="text-lg leading-relaxed text-muted">
-                What I do have is four projects that go past a tutorial: an application with real
+                What I do have is four projects that go past a tutorial. An application with real
                 users and payments, an internal tool that automates deployments, a log pipeline
-                running on AWS, and this site — which I&apos;m turning into its own infrastructure
+                running on AWS, and this site, which I&apos;m turning into its own infrastructure
                 build as I learn. I care as much about what happens after{" "}
                 <code className="font-mono text-foreground">git push</code> as what happens before
                 it.

@@ -18,7 +18,7 @@ export const projects: Project[] = [
     type: "Product — Full-Stack Application",
     oneLiner: "A real-world cricket match platform.",
     description:
-      "A full-stack platform for organizing cricket matches — teams, waitlists, and payments handled end to end behind an authenticated REST API.",
+      "A full-stack platform for organizing cricket matches, teams, waitlists, and payments handled end to end behind an authenticated REST API.",
     tech: ["Python", "FastAPI", "PostgreSQL", "Docker", "REST APIs", "Authentication", "Payments"],
     github: "https://github.com/Guna-Asher/Stranger-Club",
     status: "shipped",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     type: "Infrastructure — In Progress",
     oneLiner: "This website, becoming its own infrastructure project.",
     description:
-      "This portfolio is the workload for an ongoing infrastructure build — taking it from a Git repository to a containerized, monitored, CI/CD-deployed service on real cloud infrastructure.",
+      "This portfolio is the workload for an ongoing infrastructure build taking it from a Git repository to a containerized, monitored, CI/CD-deployed service on real cloud infrastructure.",
     tech: ["Docker", "AWS EC2", "Nginx", "GitHub Actions", "Terraform", "CI/CD"],
     github: "https://github.com/Guna-Asher",
     status: "building",
