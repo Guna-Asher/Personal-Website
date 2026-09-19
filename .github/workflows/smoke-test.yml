@@ -1,0 +1,39 @@
+name: Production Smoke Test
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy
+    types:
+      - completed
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    name: Verify production
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    runs-on: ubuntu-latest
+
+    environment: production
+
+    steps:
+      - name: Check production endpoint
+        run: |
+          set -euo pipefail
+
+          URL="http://${{ secrets.EC2_HOST }}"
+
+          echo "Checking: $URL"
+
+          curl \
+            --fail \
+            --silent \
+            --show-error \
+            --location \
+            --max-time 15 \
+            "$URL" > /dev/null
+
+          echo "Production endpoint is reachable"
