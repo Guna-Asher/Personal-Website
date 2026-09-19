@@ -9,6 +9,8 @@ EXPECTED_BIND="127.0.0.1:3000"
 MAX_ATTEMPTS=30
 SLEEP_SECONDS=2
 
+DEPLOY_SHA="${1:-}"
+
 echo "==> Moving to application directory"
 cd "$APP_DIR"
 
@@ -21,8 +23,23 @@ if [[ -n "$(git status --porcelain)" ]]; then
     exit 1
 fi
 
-echo "==> Pulling latest code"
-git pull --ff-only origin main
+echo "==> Fetching latest repository state"
+git fetch origin main
+
+if [[ -z "$DEPLOY_SHA" ]]; then
+    DEPLOY_SHA="$(git rev-parse origin/main)"
+fi
+
+echo "==> Preparing deployment"
+echo "    Commit: $DEPLOY_SHA"
+
+if ! git cat-file -e "${DEPLOY_SHA}^{commit}" 2>/dev/null; then
+    echo "ERROR: Requested commit does not exist locally."
+    exit 1
+fi
+
+echo "==> Checking out deployment commit"
+git checkout --detach "$DEPLOY_SHA"
 
 echo "==> Validating Docker Compose configuration"
 docker compose config --quiet
@@ -144,6 +161,7 @@ if wait_for_healthy; then
     docker compose ps
 
     echo "==> Deployment successful"
+    echo "    Deployed commit: $DEPLOY_SHA"
 
 else
 
