@@ -3,14 +3,40 @@
 set -euo pipefail
 
 APP_DIR="$HOME/Personal-Website"
+SERVICE_NAME="portfolio"
+EXPECTED_BIND="127.0.0.1:3000"
+
 MAX_ATTEMPTS=30
 SLEEP_SECONDS=2
 
 echo "==> Moving to application directory"
 cd "$APP_DIR"
 
+echo "==> Checking working tree"
+if [[ -n "$(git status --porcelain)" ]]; then
+    echo "ERROR: Working tree is not clean."
+    echo "Commit, stash, or remove local changes before deploying."
+    git status --short
+    exit 1
+fi
+
 echo "==> Pulling latest code"
 git pull --ff-only origin main
+
+echo "==> Validating Docker Compose configuration"
+docker compose config --quiet
+
+echo "==> Validating application port mapping"
+ACTUAL_BIND="$(docker compose port "$SERVICE_NAME" 3000)"
+
+if [[ "$ACTUAL_BIND" != "$EXPECTED_BIND" ]]; then
+    echo "ERROR: Unexpected port mapping."
+    echo "Expected: $EXPECTED_BIND"
+    echo "Actual:   $ACTUAL_BIND"
+    exit 1
+fi
+
+echo "    Port mapping OK: $ACTUAL_BIND"
 
 echo "==> Building Docker image"
 docker compose build
@@ -21,13 +47,23 @@ docker compose up -d
 echo "==> Waiting for application to become ready"
 
 for ((attempt=1; attempt<=MAX_ATTEMPTS; attempt++)); do
-    container_health=$(docker inspect \
-        --format '{{.State.Health.Status}}' \
-        personal-website-portfolio-1 2>/dev/null || true)
+
+    container_id="$(docker compose ps -q "$SERVICE_NAME" 2>/dev/null || true)"
+
+    container_health="unknown"
+
+    if [[ -n "$container_id" ]]; then
+        container_health="$(
+            docker inspect \
+                --format '{{.State.Health.Status}}' \
+                "$container_id" 2>/dev/null || true
+        )"
+    fi
 
     http_ok=false
 
-    if curl --fail --silent http://127.0.0.1:3000 > /dev/null; then
+    if curl --fail --silent \
+        http://127.0.0.1:3000 > /dev/null 2>&1; then
         http_ok=true
     fi
 
@@ -46,7 +82,7 @@ for ((attempt=1; attempt<=MAX_ATTEMPTS; attempt++)); do
     sleep "$SLEEP_SECONDS"
 done
 
-echo "==> Current container status"
+echo "==> Final container status"
 docker compose ps
 
 echo "==> Deployment successful"
